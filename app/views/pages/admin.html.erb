@@ -1,4 +1,5 @@
 <%= render 'shared/navbaradmin'%>
+<div class="container">
 <% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
 <div class="row">
   <div class="col-md-12">
@@ -10,7 +11,6 @@
         </div>
       </div>
       <div class="table-data__tool-right">
-
         <%= link_to 'Ajouter un article', new_article_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
       </div>
     </div>
@@ -71,6 +71,6 @@
 <%else%>
 <h1>Vous n'avez pas accès à cette page</h1>
 <%end%>
-
+</div>
 
 

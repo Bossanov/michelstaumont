@@ -1,4 +1,5 @@
 <%= render 'shared/navbaradmin'%>
+<div class="container">
 <p id="notice"><%= notice %></p>
 <% @article.photos.each do |photo| %>
   <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
@@ -33,5 +34,7 @@
   <%= @article.statut %>
 </p>
 
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', pages_admin_path %>
+
+<%= link_to 'Modifier', edit_article_path(@article), class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+<%= link_to 'Retour page Admin', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+</div>
