@@ -1,5 +1,41 @@
-<h1>New Article</h1>
+<%= render 'shared/navbaradmin'%>
+<% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
+<h1>Ajouter un article</h1>
+<%= simple_form_for(@article) do |f| %>
+<%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<form class="row g-3">
+  <div class="col-md-6">
+    <%= f.input :title, label:"Titre de l'article",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :price , label:"Prix sans option",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :body , label:"Commentaires sur l'article",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :typearray, label:"Types possibles", :collection => ["A2","A3", "A4"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[typearray][]", :multiple => true} %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :papierarray, label:"Types de papiers possibles", :collection => ["FineArt","Aluminium", "Plexiglass"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[papierarray][]", :multiple => true} %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :cadrearray, label:"Types d'encadrements possibles", :collection => ["Noir","Blanc", "Aluminium", "Bois"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[cadrearray][]", :multiple => true} %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :statut,label:"Positionnement dans le site", :collection => ["Mise en avant sur le site","Normal"],placeholder:"Sélectionnez ici" ,classe:"form-control" %>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  </div>
+  <div class="col-12">
+    <%= f.button  :submit, class:"btn btn-primary" %>
+    <%= link_to 'Retour page Admin', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+  </div>
+</form>
+<% end %>
+<% else%>
+<h1>Vous n'avez pas accès à cette page</h1>
+<%end%>
 
-<%= render 'form', article: @article %>
-
-<%= link_to 'Back', articles_path %>

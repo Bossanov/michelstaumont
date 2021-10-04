@@ -1,0 +1,19 @@
+<h1>Créer son profil</h1>
+
+<%= simple_form_for @profile do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="form-inputs">
+    <%= f.input :last_name, label: false, placeholder:"Votre nom"%>
+    <%= f.input :first_name, label: false, placeholder:"Votre prénom" %>
+    <%= f.input :rue, label: false, placeholder:"Votre rue" %>
+    <%= f.input :postcode, label: false, placeholder:"Votre code postal" %>
+    <%= f.input :ville, as: :string, label: false, placeholder:"Votre ville" %>
+    <%= f.input :pays, label: false, placeholder:"Votre pays" %>
+    <%= f.input :phone, label: false, placeholder:"Votre téléphone" %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>
+<%= link_to 'Back', profiles_path %>

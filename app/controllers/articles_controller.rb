@@ -17,14 +17,17 @@ class ArticlesController < ApplicationController
 
   # GET /articles/1/edit
   def edit
+
   end
 
   # POST /articles
   def create
     @article = Article.new(article_params)
-
+    @article.typearray = params[:search][:typearray]
+    @article.papierarray = params[:search][:papierarray]
+    @article.cadrearray = params[:search][:cadrearray]
     if @article.save
-      redirect_to @article, notice: 'Article was successfully created.'
+      redirect_to pages_admin_path, notice: 'L article a été correctement enregistré.'
     else
       render :new
     end
@@ -33,7 +36,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   def update
     if @article.update(article_params)
-      redirect_to @article, notice: 'Article was successfully updated.'
+      redirect_to pages_admin_path, notice: 'Article was successfully updated.'
     else
       render :edit
     end
@@ -42,7 +45,15 @@ class ArticlesController < ApplicationController
   # DELETE /articles/1
   def destroy
     @article.destroy
-    redirect_to articles_url, notice: 'Article was successfully destroyed.'
+    redirect_to pages_admin_path, notice: "L'article a été effacé de la base de données"
+  end
+
+  def supprimer_article
+    @article = Article.where(id: params[:articleid])
+
+    @article.last.destroy
+    flash[:alert] = "L'article a été effacé de la base de donnée."
+    redirect_to pages_admin_path
   end
 
   private
@@ -53,6 +64,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :body, :type, :papier, :cadre, :statut)
+      params.require(:article).permit(:title, :price,:body, :typearray, :papierarray, :cadrearray, :statut, photos: [])
     end
 end

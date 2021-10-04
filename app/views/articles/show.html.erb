@@ -1,5 +1,8 @@
+<%= render 'shared/navbaradmin'%>
 <p id="notice"><%= notice %></p>
-
+<% @article.photos.each do |photo| %>
+  <%= cl_image_tag photo.key, height: 300, width: 400, crop: :fill %>
+<% end %>
 <p>
   <strong>Title:</strong>
   <%= @article.title %>
@@ -12,17 +15,17 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @article.type %>
+  <%= @article.typearray %>
 </p>
 
 <p>
   <strong>Papier:</strong>
-  <%= @article.papier %>
+  <%= @article.papierarray %>
 </p>
 
 <p>
   <strong>Cadre:</strong>
-  <%= @article.cadre %>
+  <%= @article.cadrearray %>
 </p>
 
 <p>
@@ -31,4 +34,4 @@
 </p>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<%= link_to 'Back', pages_admin_path %>

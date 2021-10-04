@@ -1,0 +1,65 @@
+
+<body style="background-image: url('../assets/login.jpg');">
+<div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+        <h3>S'inscrire</h3>
+      </div>
+      <div class="card-body">
+        <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= f.error_notification %>
+        <form>
+          <div class="input-group form-group">
+            <div class="input-group-prepend" style="height:38px">
+              <span class="input-group-text"><i class="fas fa-user"></i></span>
+            </div>
+            <%= f.input :email,
+                required: true,
+                autofocus: true,
+                label:false,
+                input_html: { autocomplete: "email" },
+                class: "form-control",
+                placeholder:"Email"%>
+          </div>
+          <div class="input-group form-group">
+            <div class="input-group-prepend" style="height:38px">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <%= f.input :password,
+                required: true,
+                label:false,
+                input_html: { autocomplete: "new-password" },
+                class: "form-control",
+                placeholder:"Mot de passe"%>
+          </div>
+
+          <div class="input-group form-group">
+            <div class="input-group-prepend" style="height:38px">
+              <span class="input-group-text"><i class="fas fa-key"></i></span>
+            </div>
+            <%= f.input :password_confirmation,
+                required: true,
+                label:false,
+                input_html: { autocomplete: "new-password" },
+                class: "form-control",
+                placeholder:"Confirmez le mot de passe"%>
+          </div>
+
+
+          <div class="form-group">
+            <input type="submit" value="Valider" class="btn float-right login_btn">
+          </div>
+        </form>
+        <% end %>
+      </div>
+      <div class="card-footer">
+        <div class="d-flex justify-content-center links">
+          <%= render "devise/shared/links" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+

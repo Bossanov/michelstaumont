@@ -1,0 +1,36 @@
+<header id="header">
+  <div class="d-flex flex-column">
+    <div class="profile">
+      <img src="assets/photoavatar.png" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="index.html">Michel STAUMONT</a></h1>
+      <div class="social-links mt-3 text-center">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+
+    <nav id="navbar" class="nav-menu navbar">
+      <ul>
+        <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
+        <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>À propos de moi</span></a></li>
+        <li><a href="<%= pages_actualites_path%>" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Actualités</span></a></li>
+        <li><a href="<%= pages_shop_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Galerie - E-shop</span></a></li>
+        <% if current_user && current_user.profile.nil?%>
+          <li><a href="<%=  new_profile_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Remplir mon profil</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "client"%>
+          <li><a href="<%= pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace client</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "admin"%>
+          <li><a href="<%= pages_admin_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace admin</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <%else%>
+          <li><a href="<%= new_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>s'inscrire/se connecter</span></a></li>
+        <%end%>
+        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Me contacter</span></a></li>
+      </ul>
+    </nav><!-- .nav-menu -->
+  </div>
+</header><!-- End Header -->
