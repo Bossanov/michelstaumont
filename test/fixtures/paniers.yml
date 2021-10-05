@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  statut: MyString
+  totalprice: 1
+  typeenvoi: MyString
+
+two:
+  statut: MyString
+  totalprice: 1
+  typeenvoi: MyString

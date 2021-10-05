@@ -17,4 +17,6 @@ class PagesController < ApplicationController
   def shop
   end
 
+  def test
+  end
 end

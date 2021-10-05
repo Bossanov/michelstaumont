@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
 
-  resources :profiles
+  resources :profiles do
+    resources :paniers
+  end
   resources :articles
   resources :messages
 
@@ -9,6 +11,7 @@ Rails.application.routes.draw do
   get 'pages/actualites'
   get 'pages/admin'
   get 'pages/client'
+  get 'pages/test'
   get 'pages/shop'
   get 'supprimer_article', to: 'articles#supprimer_article'
   get 'effacer_message', to: 'messages#effacer_message'
