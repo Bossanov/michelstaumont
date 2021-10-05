@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'pages/client'
   get 'pages/shop'
   get 'supprimer_article', to: 'articles#supprimer_article'
+  get 'effacer_message', to: 'messages#effacer_message'
+
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

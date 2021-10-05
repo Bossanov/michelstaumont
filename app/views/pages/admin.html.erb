@@ -3,7 +3,7 @@
 <% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
 <div class="row">
   <div class="col-md-12">
-    <h1 >Les articles</h1>
+    <h1 style="color:red;">Les articles</h1>
     <div class="table-data__tool">
       <div class="table-data__tool-left">
         <div class="rs-select2--light rs-select2--md">
@@ -56,6 +56,58 @@
               </button>
               <button class="item" data-toggle="tooltip" data-placement="top" title="Voir">
                 <a class="fas fa-eye" href="<%=article_path(art)%>"></a>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="spacer"></tr>
+        <% end%>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-12">
+    <h1 style="color:red;">Les messages</h1>
+    <div class="table-data__tool">
+      <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md">
+          <div class="dropDownSelect2"></div>
+        </div>
+      </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+      <table class="table table-data2">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>E-mail</th>
+            <th>Objet</th>
+            <th>Message</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+      <tbody>
+      <% @messages = Message.all%>
+
+      <% if @messages.length == 0 %>
+        <tr class="tr-shadow">
+          <td>Pas de message dans la base de données</td>
+        </tr>
+      <% else%>
+      <% @messages.each do |mess|%>
+        <tr class="tr-shadow">
+          <td><%= mess.nom%></td>
+          <td><%= mess.email%></td>
+          <td><%= mess.objet%></td>
+          <td><%= mess.content%></td>
+          <td>
+            <div class="table-data-feature">
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
+                <a class="fas fa-trash-alt" href="<%=effacer_message_path(messageid: mess.id)%> "></a>
               </button>
             </div>
           </td>
