@@ -1,0 +1,71 @@
+<body>
+
+  <!-- ======= Mobile nav toggle button ======= -->
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+
+  <!-- ======= Header ======= -->
+  <%= render 'shared/navbargallery'%>
+
+  <main id="main">
+
+    <!-- ======= Breadcrumbs ======= -->
+    <section class="breadcrumbs">
+      <div class="container">
+
+        <div class="d-flex justify-content-between align-items-center">
+          <h2>Galerie</h2>
+          <ol>
+            <li><a href="<%= root_path%>">Accueil</a></li>
+            <li>Galerie E-shop</li>
+          </ol>
+        </div>
+
+      </div>
+    </section><!-- End Breadcrumbs -->
+
+    <section class="inner-page">
+      <div class="container">
+        <section id="portfolio" class="portfolio section-bg">
+      <div class="container">
+
+
+
+      <!--  <div class="row" data-aos="fade-up">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div> -->
+
+        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
+          <% @articles = Article.all %>
+          <% @articles.each do |art|%>
+          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="portfolio-wrap">
+              <%= cl_image_tag art.photos.first.key , size:"410x300", crop:"fill", class:"img-fluid"%>
+              <div class="portfolio-links">
+                <a href="<%= art.photos.first.url%>" data-gallery="portfolioGallery" class="portfolio-lightbox" title="<%=art.title.capitalize%>"><i class="fas fa-eye"></i></a>
+                <a href="<%= pages_choixoptions_path(art)%>" title="Acheter"><i class="fas fa-shopping-basket"></i></a>
+              </div>
+            </div>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </section><!-- End Portfolio Section -->
+      </div>
+    </section>
+
+  </main><!-- End #main -->
+
+
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+</body>
+
+

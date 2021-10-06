@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'pages/admin'
   get 'pages/client'
   get 'pages/test'
-  get 'pages/shop'
+  get 'pages/gallery'
   get 'pages/choixoptions'
   get 'pages/panier'
   get 'supprimer_article', to: 'articles#supprimer_article'
