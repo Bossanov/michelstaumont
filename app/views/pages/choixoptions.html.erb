@@ -1,0 +1,75 @@
+<div class="static-slider10" style="background-image:url(https://www.wrappixel.com/demos/ui-kit/wrapkit/assets/images/sliders/static-slider/slider10/img1.jpg)">
+  <div class="container">
+    <!-- Row  -->
+    <div class="row justify-content-center ">
+      <!-- Column -->
+      <div class="col-md-8 align-self-center text-center">
+        <span class="badge rounded-pill badge-inverse text-white font-weight-light px-3 py-1">Michel STAUMONT Photographe</span>
+        <br>
+        <br>
+        <br>
+        <h1 class="my-3 title text-white text-uppercase">Choisissez vos options</h1>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+<% @article = Article.where(id: params[:format])%>
+<div class="container">
+          <% @choice = Choice.new%>
+
+            <%= simple_form_for(@choice) do |f| %>
+
+            <%=f.hidden_field :totalprice, value: @article.last.price%>
+            <%=f.hidden_field :articleid, value: @article.last.id%>
+
+        <table id="cart" class="table table-hover table-condensed">
+          <thead>
+            <tr>
+              <th style="width:50%">Article choisi</th>
+              <th style="width:10%">Prix nu</th>
+              <th style="width:8%">Taille</th>
+              <th style="width:22%" class="text-center">Papier</th>
+              <th style="width:10%">Encadrement</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td data-th="Product">
+                <div class="row">
+                  <div class="col-sm-2 hidden-xs"><%= cl_image_tag @article.last.photos.first.key, alt:"..." ,class:"img-responsive"%></div>
+                  <div class="col-sm-10">
+                    <h4 class="nomargin"><%=@article.last.title.capitalize%></h4>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Price"><%=@article.last.price%> €</td>
+              <td data-th="Quantity">
+                <%= f.input :typechoice,label:false, :collection => @article.last.typearray,classe:"form-control" %>
+              </td>
+              <td data-th="Subtotal" class="text-center"><%= f.input :papier,label:false, :collection => @article.last.papierarray,classe:"form-control" %></td>
+              <td class="actions" data-th="">
+              <%= f.input :cadre,label:false, :collection => @article.last.cadrearray,classe:"form-control" %>
+
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr class="visible-xs">
+            </tr>
+            <tr>
+              <td><a href="<%= root_path%>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Retour à l'accueil</a></td>
+              <td colspan="2" class="hidden-xs"></td>
+              <td class="hidden-xs text-center"><strong></strong></td>
+              <td><%= f.button  :submit, class:"btn btn-success btn-block" %></td>
+            </tr>
+          </tfoot>
+        </table>
+            <%end%>
+
+
+</div>
+

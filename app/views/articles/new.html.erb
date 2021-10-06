@@ -22,7 +22,7 @@
     <%= f.input :papierarray, label:"Types de papiers possibles", :collection => ["FineArt","Aluminium", "Plexiglass"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[papierarray][]", :multiple => true} %>
   </div>
   <div class="col-md-6">
-    <%= f.input :cadrearray, label:"Types d'encadrements possibles", :collection => ["Noir","Blanc", "Aluminium", "Bois"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[cadrearray][]", :multiple => true} %>
+    <%= f.input :cadrearray, label:"Types d'encadrements possibles", :collection => ["Sans","Noir","Blanc", "Aluminium", "Bois"], :include_blank => "Anything", wrapper_html: { class: 'form-group' }, :as => :check_boxes, include_hidden: false, :input_html => {:name => "search[cadrearray][]", :multiple => true} %>
   </div>
   <div class="col-md-6">
     <%= f.input :statut,label:"Positionnement dans le site", :collection => ["Mise en avant sur le site","Normal"],placeholder:"Sélectionnez ici" ,classe:"form-control" %>

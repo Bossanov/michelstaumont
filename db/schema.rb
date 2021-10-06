@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_05_193530) do
+ActiveRecord::Schema.define(version: 2021_10_06_135327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,16 @@ ActiveRecord::Schema.define(version: 2021_10_05_193530) do
     t.text "papierarray", default: [], array: true
     t.text "cadrearray", default: [], array: true
     t.index ["profile_id"], name: "index_articles_on_profile_id"
+  end
+
+  create_table "choices", force: :cascade do |t|
+    t.string "articleid"
+    t.string "typechoice"
+    t.integer "totalprice"
+    t.string "papier"
+    t.string "cadre"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "messages", force: :cascade do |t|

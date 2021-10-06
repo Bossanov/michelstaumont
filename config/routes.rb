@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   end
   resources :articles
   resources :messages
+  resources :choices
 
   root to: 'pages#home'
   get 'pages/actualites'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   get 'pages/client'
   get 'pages/test'
   get 'pages/shop'
+  get 'pages/choixoptions'
+  get 'pages/panier'
   get 'supprimer_article', to: 'articles#supprimer_article'
   get 'effacer_message', to: 'messages#effacer_message'
 
