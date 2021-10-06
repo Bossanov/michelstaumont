@@ -91,7 +91,7 @@
         </div> -->
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="100">
-          <% @articles = Article.all %>
+          <% @articles = Article.all.order("created_at DESC").first(6) %>
           <% @articles.each do |art|%>
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
