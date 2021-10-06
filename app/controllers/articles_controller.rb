@@ -35,6 +35,10 @@ class ArticlesController < ApplicationController
 
   # PATCH/PUT /articles/1
   def update
+    @article.typearray = params[:search][:typearray]
+    @article.papierarray = params[:search][:papierarray]
+    @article.cadrearray = params[:search][:cadrearray]
+
     if @article.update(article_params)
       redirect_to pages_admin_path, notice: 'Article was successfully updated.'
     else
