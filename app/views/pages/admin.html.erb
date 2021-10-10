@@ -120,6 +120,68 @@
     </div>
   </div>
 </div>
+<div class="row">
+  <div class="col-md-12">
+    <h1 style="color:red;">Les actualités</h1>
+    <div class="table-data__tool">
+      <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md">
+          <div class="dropDownSelect2"></div>
+        </div>
+      </div>
+      <div class="table-data__tool-right">
+        <%= link_to 'Ajouter une actualité', new_actualite_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+      </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+      <table class="table table-data2">
+        <thead>
+          <tr>
+            <th>Titre</th>
+            <th>Lieu</th>
+            <th>Date</th>
+            <th>Contenu</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+      <tbody>
+      <% @actualites = Actualite.all%>
+
+      <% if @actualites.length == 0 %>
+        <tr class="tr-shadow">
+          <td>Pas d'actualités dans la base de données</td>
+        </tr>
+      <% else%>
+      <% @actualites.each do |act|%>
+        <tr class="tr-shadow">
+          <td><%= act.title%></td>
+          <td><%= act.lieu%></td>
+          <td><%= act.date%></td>
+          <td><%= act.body%></td>
+          <td>
+            <div class="table-data-feature">
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Modifier">
+                <a class="fas fa-pen" href="<%=edit_actualite_path(act)%>"></a>
+              </button>
+
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
+                <a class="fas fa-trash-alt" href="<%=supprimer_actualite_path(actualiteid: act.id)%> "></a>
+              </button>
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Voir">
+                <a class="fas fa-eye" href="<%=actualite_path(act)%>"></a>
+              </button>
+            </div>
+          </td>
+        </tr>
+        <tr class="spacer"></tr>
+        <% end%>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
 <%else%>
 <h1>Vous n'avez pas accès à cette page</h1>
 <%end%>

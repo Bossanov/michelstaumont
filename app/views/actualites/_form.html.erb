@@ -4,13 +4,15 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
-    <%= f.input :body %>
-    <%= f.input :date %>
-    <%= f.input :lieu %>
+    <%= f.input :title, label:false, placeholder:"Titre de l'actualité" %>
+    <%= f.input :body, label:false, placeholder:"Contenu de l'actualité" %>
+    <%= f.input :date , label:false, placeholder:"Date de l'actualité"%>
+    <%= f.input :lieu , label:false, placeholder:"Lieu de l'actualité"%>
+    <%= f.input :photo, as: :file %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="col-12">
+    <%= f.button  :submit, class:"btn btn-primary" %>
+    <%= link_to 'Retour page Admin', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
   </div>
 <% end %>

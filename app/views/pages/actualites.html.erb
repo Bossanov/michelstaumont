@@ -21,23 +21,31 @@
               <div class="container">
                 <div class="row">
                   <div class="col-12">
-
-                    <article class="events-news-post">
-                      <header class="entry-header">
-                        <h2 class="entry-title">A guide to all summer festivals</h2>
-                        <div class="entry-meta flex align-items-center">
-                          <div class="posted-author"><i >Lieu</i></div>
-                          <div class="post-comments"><p >Date</p></div>
-                        </div>
-                      </header>
-                      <figure>
-                        <img src="../assets/home.jpg" alt="">
-                      </figure>
-                      <div class="entry-content">
-                        <p>Vestibulum eget lacus at mauris sagittis varius. Etiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit amet metus. Duis vel semper turpis, ac tempus libero. Maecenas id ultrices risus. Aenean nec ornare ipsum, lacinia volutpat urna. Maecenas ut aliquam purus, quis sodales dolor.tiam ut venenatis dui. Nullam tellus risus, pellentesque at facilisis et, scelerisque sit ame.</p>
-                      </div>
-                    </article>
-
+                    <% @actualites = Actualite.all%>
+                    <% if @actualites.length == 0%>
+                     <h1>Pas d'actualité pour le moment...</h1>
+                    <% else%>
+                      <% @actualites.each do |act|%>
+                        <article class="events-news-post">
+                          <header class="entry-header">
+                            <h2 class="entry-title"><%=act.title%></h2>
+                            <div class="entry-meta flex align-items-center">
+                              <div class="posted-author"><i ><%=act.lieu%></i></div>
+                              <div class="post-comments"><p ><%=act.date%></p></div>
+                            </div>
+                          </header>
+                          <figure>
+                            <% if act.photo.key.nil?%>
+                            <%else%>
+                            <%= cl_image_tag act.photo.key%>
+                            <%end%>
+                          </figure>
+                          <div class="entry-content">
+                            <p><%=act.body%></p>
+                          </div>
+                        </article>
+                      <%end%>
+                    <%end%>
                   </div>
                 </div>
               </div>

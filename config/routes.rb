@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'pages/choixoptions'
   get 'pages/panier'
   get 'supprimer_article', to: 'articles#supprimer_article'
+  get 'supprimer_actualite', to: 'actualites#supprimer_actualite'
+
   get 'effacer_message', to: 'messages#effacer_message'
 
 

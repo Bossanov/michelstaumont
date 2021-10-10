@@ -24,7 +24,7 @@ class ActualitesController < ApplicationController
     @actualite = Actualite.new(actualite_params)
 
     if @actualite.save
-      redirect_to @actualite, notice: 'Actualite was successfully created.'
+      redirect_to pages_admin_path
     else
       render :new
     end
@@ -33,7 +33,7 @@ class ActualitesController < ApplicationController
   # PATCH/PUT /actualites/1
   def update
     if @actualite.update(actualite_params)
-      redirect_to @actualite, notice: 'Actualite was successfully updated.'
+      redirect_to pages_admin_path
     else
       render :edit
     end
@@ -45,6 +45,13 @@ class ActualitesController < ApplicationController
     redirect_to actualites_url, notice: 'Actualite was successfully destroyed.'
   end
 
+  def supprimer_actualite
+    @actualite = Actualite.where(id: params[:actualiteid])
+
+    @actualite.last.destroy
+    redirect_to pages_admin_path
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_actualite
@@ -53,6 +60,6 @@ class ActualitesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def actualite_params
-      params.require(:actualite).permit(:title, :body, :date, :lieu)
+      params.require(:actualite).permit(:title, :body, :date, :lieu, :photo)
     end
 end

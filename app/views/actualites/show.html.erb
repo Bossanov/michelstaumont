@@ -1,5 +1,7 @@
+<%= render 'shared/navbaradmin'%>
+<div class="container">
 <p id="notice"><%= notice %></p>
-
+<%= cl_image_tag @actualite.photo.key, height: 300, width: 400, crop: :fill %>
 <p>
   <strong>Title:</strong>
   <%= @actualite.title %>
@@ -20,5 +22,5 @@
   <%= @actualite.lieu %>
 </p>
 
-<%= link_to 'Edit', edit_actualite_path(@actualite) %> |
-<%= link_to 'Back', actualites_path %>
+<%= link_to 'Retour page Admin', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+</div>
