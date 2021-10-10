@@ -17,52 +17,50 @@
   </div>
 </div>
 <% @panier = Panier.where(id: params[:format])%>
-
-
 <% if @panier.last.profile_id == current_user.profile.id%>
-<div class="container">
-  <table id="cart" class="table table-hover table-condensed">
-            <thead>
-            <tr>
-              <th >Articles et options</th>
-              <th >Prix</th>
-              <th ></th>
-            </tr>
-          </thead>
-          <tbody>
-              <% @panier.last.contenu.each do |cont|%>
-              <% @choix = Choice.where(id: cont)%>
-              <% @article = Article.where(id: @choix.last.articleid)%>
-            <tr>
-              <td data-th="Product">
-                <div class="row">
-                  <div class="col-sm-2 hidden-xs"><%= cl_image_tag @article.last.photos.first.key, alt:"..." ,class:"img-responsive"%></div>
-                  <div class="col-sm-10">
-                    <h4 class="nomargin"><%=@article.last.title.capitalize%></h4>
-                    <p>Options retenues : <%=@choix.last.typechoice%>, <%=@choix.last.papier%>, <%=@choix.last.cadre%></p>
-                  </div>
+  <div class="container">
+    <table id="cart" class="table table-hover table-condensed">
+      <thead>
+        <tr>
+          <th >Articles et options</th>
+          <th >Prix</th>
+          <th ></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @panier.last.contenu.each do |cont|%>
+          <% @choix = Choice.where(id: cont)%>
+          <% @article = Article.where(id: @choix.last.articleid)%>
+          <tr>
+            <td data-th="Product">
+              <div class="row">
+                <div class="col-sm-2 hidden-xs"><%= cl_image_tag @article.last.photos.first.key, alt:"..." ,class:"img-responsive"%></div>
+                <div class="col-sm-10">
+                  <h4 class="nomargin"><%=@article.last.title.capitalize%></h4>
+                  <p>Options retenues : <%=@choix.last.typechoice%>, <%=@choix.last.papier%>, <%=@choix.last.cadre%></p>
                 </div>
-              </td>
-              <td data-th="Price"><%=@choix.last.totalprice%></td>
-              <td class="actions" data-th="">
-                <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
-              </td>
-            </tr>
-              <%end%>
-          </tbody>
-          <tfoot>
-            <tr class="visible-xs">
-              <td class="text-center"><strong>Frais de port:</strong></td>
-            </tr>
-            <tr>
-              <td><a href="<%= root_path%>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continuer la visite</a></td>
-              <td colspan="2" class="hidden-xs"></td>
-              <td class="hidden-xs text-center"><strong>Total <%= @panier.last.totalprice%> €</strong></td>
-              <td><a href="#" class="btn btn-success btn-block">Payer <i class="fa fa-angle-right"></i></a></td>
-            </tr>
-          </tfoot>
-        </table>
-</div>
+              </div>
+            </td>
+            <td data-th="Price"><%=@choix.last.totalprice%></td>
+            <td class="actions" data-th="">
+              <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+            </td>
+          </tr>
+        <%end%>
+      </tbody>
+      <tfoot>
+        <tr class="visible-xs">
+          <td class="text-center"><strong>Frais de port:</strong></td>
+        </tr>
+        <tr>
+          <td><a href="<%= root_path%>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continuer la visite</a></td>
+          <td colspan="2" class="hidden-xs"></td>
+          <td class="hidden-xs text-center"><strong>Total <%= @panier.last.totalprice%> €</strong></td>
+          <td><a href="#" class="btn btn-success btn-block">Payer <i class="fa fa-angle-right"></i></a></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
 <%else%>
-<H1>Vous devez créer un compte pour accéder à cette page...</H1>
+  <H1>Vous devez créer un compte pour accéder à cette page...</H1>
 <%end%>

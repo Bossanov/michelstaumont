@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :actualites
   devise_for :users
 
   resources :profiles do
@@ -7,6 +8,9 @@ Rails.application.routes.draw do
   resources :articles
   resources :messages
   resources :choices
+  resources :charges
+  resources :actualites
+
 
   root to: 'pages#home'
   get 'pages/actualites'
