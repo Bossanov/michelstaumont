@@ -54,8 +54,8 @@
                           <% @commande = Commande.find_by panier_id: @paniers.last.id %>
                           <tr>
                             <th scope="row">1</th>
-                            <td><%= @paniers.created_at.strftime("%d.%m.%Y") %></td>
-                            <td><%=@paniers.totalprice%>€</td>
+                            <td><%= @paniers.last.created_at.strftime("%d.%m.%Y") %></td>
+                            <td><%=@paniers.last.totalprice%>€</td>
                             <td>
                               <%if @commande && @commande.envoi == "yes"%>
                                 commande envoyée <br> numéro de suivi : <a><%=@commande.suivi%></a>
