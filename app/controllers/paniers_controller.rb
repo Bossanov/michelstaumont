@@ -45,6 +45,16 @@ class PaniersController < ApplicationController
     redirect_to paniers_url, notice: 'Panier was successfully destroyed.'
   end
 
+  def supprimer_article_panier
+    @choix = Choice.where(id: params[:format])
+    @article = Article.where(id: @choix.last.articleid)
+    @panier = Panier.find_by profile_id: current_user.profile.id, statut: "pending"
+    @panier.contenu.delete(@choix.last.id)
+    @panier.totalprice = @panier.totalprice - @choix.last.totalprice
+    @panier.save
+    redirect_to pages_panier_path
+
+  end
 
 
   def success

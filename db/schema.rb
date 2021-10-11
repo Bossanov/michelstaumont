@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_10_135759) do
+ActiveRecord::Schema.define(version: 2021_10_10_213742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,6 +76,17 @@ ActiveRecord::Schema.define(version: 2021_10_10_135759) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "commandes", force: :cascade do |t|
+    t.string "statut"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "panier_id"
+    t.string "envoi"
+    t.string "finished"
+    t.string "suivi"
+    t.index ["panier_id"], name: "index_commandes_on_panier_id"
+  end
+
   create_table "messages", force: :cascade do |t|
     t.string "nom"
     t.string "email"
@@ -127,6 +138,7 @@ ActiveRecord::Schema.define(version: 2021_10_10_135759) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "articles", "profiles"
+  add_foreign_key "commandes", "paniers"
   add_foreign_key "paniers", "profiles"
   add_foreign_key "profiles", "users"
 end

@@ -27,4 +27,6 @@ class PagesController < ApplicationController
 
   def gallery
   end
+
+
 end

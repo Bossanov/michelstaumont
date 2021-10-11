@@ -13,24 +13,14 @@ class ChoicesController < ApplicationController
 
 
     if @choice.typechoice == "A3"
-      @choice.totalprice = @choice.totalprice + 10
+      @choice.totalprice = @choice.totalprice + 40
     end
 
-    if @choice.typechoice == "A4"
-      @choice.totalprice = @choice.totalprice + 30
+    if @choice.typechoice == "A2"
+      @choice.totalprice = @choice.totalprice + 110
     end
 
-    if @choice.papier == "Aluminium"
-      @choice.totalprice = @choice.totalprice + 50
-    end
 
-    if @choice.papier == "Plexiglass"
-      @choice.totalprice = @choice.totalprice + 80
-    end
-
-    if @choice.cadre == "Noir" || @choice.cadre == "Blanc" || @choice.cadre == "Aluminium" || @choice.cadre == "Bois"
-      @choice.totalprice = @choice.totalprice + 50
-    end
     @choice.save
     @panier = Panier.where(profile_id: current_user.profile.id , statut: "pending" )
     if @panier.length == 0

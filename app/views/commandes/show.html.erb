@@ -1,0 +1,67 @@
+<p id="notice"><%= notice %></p>
+<%= render 'shared/navbaradmin'%>
+<% @commande = Commande.where(id: params[:id])%>
+<% @panier = Panier.where(id: @commande.last.panier_id)%>
+<% @profile = Profile.where(id: @panier.last.profile_id)%>
+<% @user = User.where(id: @profile.last.user_id)%>
+<div class="container">
+  <% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
+    <div class="card-deck">
+      <div class="card" style="height:500px;">
+        <img src="https://res.cloudinary.com/dz83jh064/image/upload/v1633899148/image_ijxfvf.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Coordonées du client</h5>
+          <p class="card-text" style="color:white;"><%=@profile.last.last_name.upcase%> <%=@profile.last.first_name.capitalize%><br><%=@profile.last.rue%><br><%=@profile.last.postcode%><br><%=@profile.last.ville%><br>Téléphone : <%=@profile.last.phone%><br> E-mail : <%=@user.last.email%></p>
+        </div>
+        <div class="card-footer">
+          <small  style="color:white;">Membre crée le <%=@user.last.created_at.strftime("%d.%m.%Y")%></small>
+        </div>
+      </div>
+      <div class="card" style="height:500px;">
+        <img src="https://res.cloudinary.com/dz83jh064/image/upload/v1633899205/image_ehugy5.jpg" class="card-img-top"  alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Contenu de la commande</h5>
+          <p class="card-text" style="color:white;">
+          <% @panier.last.contenu.each do |cont|%>
+            <% @choix = Choice.where(id: cont)%>
+            <% @article = Article.where(id: @choix.last.articleid)%>
+            <h4 class="nomargin"><%=@article.last.title.capitalize%></h4>
+            <p style="color:white;">Options retenues : <%=@choix.last.typechoice%>, <%=@choix.last.papier%>, <%=@choix.last.cadre%></p>
+          <%end%>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small  style="color:white;">Total de la commande : <%=@panier.last.totalprice%> €</small>
+      </div>
+    </div>
+    <div class="card" style="height:500px;">
+      <img src="https://res.cloudinary.com/dz83jh064/image/upload/v1633899700/image_cdsnr6.png" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title">Statut sur la commande</h5>
+        <p class="card-text" >
+          <br>
+          <%if @commande.last.envoi.nil?%>
+            <form class="course-search-form" action="<%=commande_envoyee_path(@commande.last.id)%>"  type="get" >
+              <input type="text"   id="title" name="title" placeholder="Num. de suivi poste">
+              <input  type="submit" value="enregistrer" class="site-btn">
+            </form>
+          <%end%>
+        </p>
+      </div>
+      <div class="card-footer">
+        <small  style="color:white;">Date de la commande : <%=@commande.last.created_at.strftime("%d.%m.%Y")%> </small>
+      </div>
+    </div>
+  </div>
+  <%else%>
+    <h1>Vous n'avez pas accès à cette page</h1>
+  <%end%>
+  <a class="btn btn-primary" href="<%=commandes_path%>" role="button">Retour à mes commandes</a>
+</div>
+
+
+
+
+
+
+

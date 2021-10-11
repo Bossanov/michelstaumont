@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :commandes
   resources :actualites
   devise_for :users
 
@@ -22,9 +23,11 @@ Rails.application.routes.draw do
   get 'pages/panier'
   get 'supprimer_article', to: 'articles#supprimer_article'
   get 'supprimer_actualite', to: 'actualites#supprimer_actualite'
-
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
   get 'effacer_message', to: 'messages#effacer_message'
+  get 'supprimer_article_panier', to: 'paniers#supprimer_article_panier'
+  get 'commande_envoyee', to: 'commandes#commande_envoyee'
 
 
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
 end

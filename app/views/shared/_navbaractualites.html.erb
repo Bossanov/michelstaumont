@@ -15,6 +15,16 @@
       <ul>
         <li><a href="<%= root_path%>" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
         <li><a href="<%= pages_gallery_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Galerie - E-shop</span></a></li>
+        <% if current_user && current_user.profile%>
+        <% @panier = Panier.find_by profile_id: current_user.profile.id, statut: "pending"%>
+        <% if @panier.nil?%>
+        <% else%>
+        <li><a href="<%= pages_panier_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Voir mon panier (<%=@panier.contenu.count%>)</span></a></li>
+        <%end%>
+        <%end%>
+        <% if current_user && current_user.profile%>
+          <li><a href="<%=  pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon compte client</span></a></li>
+        <%end%>
         <% if current_user && current_user.profile.nil?%>
           <li><a href="<%=  new_profile_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Remplir mon profil</span></a></li>
         <% elsif current_user && current_user.profile && current_user.profile.statut == "client"%>

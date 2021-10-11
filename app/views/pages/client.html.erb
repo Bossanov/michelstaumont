@@ -1,0 +1,99 @@
+<body>
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <%= render 'shared/navbar'%>
+  <main id="main">
+    <% if  current_user && current_user.profile%>
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Compte client de <%=current_user.profile.first_name.capitalize%> <%=current_user.profile.last_name.upcase%></h2>
+            <p>Ici vous pourrez visualiser votre profil, le modifier si nécessaire et suivre vos commandes.</p>
+          </div>
+          <div class="row" data-aos="fade-in">
+            <div class="col-lg-5 d-flex align-items-stretch">
+              <div class="info">
+                <div class="address">
+                  <i class="bi bi-geo-alt"></i>
+                  <h4>Adresse:</h4>
+                  <p><%= current_user.profile.rue%> <%=current_user.profile.postcode%> <%=current_user.profile.ville%></p>
+                </div>
+                <div class="email">
+                  <i class="bi bi-envelope"></i>
+                  <h4>Email:</h4>
+                  <p><%=current_user.email%></p>
+                </div>
+                <div class="phone">
+                  <i class="bi bi-phone"></i>
+                  <h4>Téléphone:</h4>
+                  <p><%=current_user.profile.phone%></p>
+                </div>
+                <%= link_to 'Modifier', edit_profile_path(current_user.profile.id), class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+              </div>
+            </div>
+            <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
+              <div class="info">
+                <% @paniers = Panier.where(profile_id: current_user.profile.id ,statut: "paid")%>
+                <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+                  <div class="row">
+                    <h4>Suivre mes commandes</h4>
+                    <table class="table">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th scope="col">#</th>
+                          <th scope="col">Date</th>
+                          <th scope="col">Montant</th>
+                          <th scope="col">Suivi</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <% n = 1 %>
+                        <% if @paniers.length == 0%>
+                          <h4>pas de commande</h4>
+                        <%end%>
+                        <% if @paniers.length == 1%>
+                          <% @commande = Commande.find_by panier_id: @paniers.id %>
+                          <tr>
+                            <th scope="row">1</th>
+                            <td><%= @paniers.created_at.strftime("%d.%m.%Y") %></td>
+                            <td><%=@paniers.totalprice%>€</td>
+                            <td>
+                              <%if @commande && @commande.envoi == "yes"%>
+                                commande envoyée <br> numéro de suivi : <a><%=@commande.suivi%></a>
+                              <% else%>
+                                en cours
+                              <%end%>
+                            </td>
+                          </tr>
+                        <%end%>
+                        <% if @paniers.length > 1%>
+                          <% @paniers.each do |panier|%>
+                            <% @commande = Commande.find_by panier_id: panier.id %>
+                            <tr>
+                              <th scope="row"><%=n%></th>
+                              <td><%= panier.created_at.strftime("%d.%m.%Y") %></td>
+                              <td><%=panier.totalprice%>€</td>
+                              <td>
+                                <%if @commande && @commande.envoi == "yes"%>
+                                  commande envoyée <br> numéro de suivi : <a><%=@commande.suivi%></a>
+                                <% else%>
+                                  en cours
+                                <%end%>
+                                <% n = n + 1%>
+                              </td>
+                            </tr>
+                          <%end%>
+                        <% end%>
+                      </tbody>
+                    </table>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    <%else%>
+      <h1>Pour accéder à cette page, vous devez vous inscire et remplir votre profil</h1>
+    <%end%>
+  </main>
+</body>

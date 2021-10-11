@@ -16,8 +16,8 @@
     </div>
   </div>
 </div>
-<% @panier = Panier.where(id: params[:format])%>
-<% if @panier.last.profile_id == current_user.profile.id%>
+<%@panier = Panier.find_by profile_id: current_user.profile.id, statut: "pending"%>
+<% if @panier.profile_id == current_user.profile.id%>
   <div class="container">
     <table id="cart" class="table table-hover table-condensed">
       <thead>
@@ -28,7 +28,10 @@
         </tr>
       </thead>
       <tbody>
-        <% @panier.last.contenu.each do |cont|%>
+        <% if @panier.contenu.count == 0%>
+        <i>Votre panier est vide</i>
+        <% else%>
+        <% @panier.contenu.each do |cont|%>
           <% @choix = Choice.where(id: cont)%>
           <% @article = Article.where(id: @choix.last.articleid)%>
           <tr>
@@ -43,9 +46,12 @@
             </td>
             <td data-th="Price"><%=@choix.last.totalprice%></td>
             <td class="actions" data-th="">
-              <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+              <button class="btn btn-danger btn-sm" data-toggle="tooltip" data-placement="top" title="Effacer">
+                <a class="fas fa-trash" href="<%=supprimer_article_panier_path(cont)%> "></a>
+              </button>
             </td>
           </tr>
+        <%end%>
         <%end%>
       </tbody>
       <tfoot>
@@ -55,8 +61,8 @@
         <tr>
           <td><a href="<%= root_path%>" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continuer la visite</a></td>
           <td colspan="2" class="hidden-xs"></td>
-          <td class="hidden-xs text-center"><strong>Total <%= @panier.last.totalprice%> €</strong></td>
-          <td><a href="#" class="btn btn-success btn-block">Payer <i class="fa fa-angle-right"></i></a></td>
+          <td class="hidden-xs text-center"><strong>Total <%= @panier.totalprice%> €</strong></td>
+          <td><a href="<%=new_charge_path%>" class="btn btn-success btn-block">Payer <i class="fa fa-angle-right"></i></a></td>
         </tr>
       </tfoot>
     </table>

@@ -32,7 +32,7 @@
               <th style="width:10%">Prix nu</th>
               <th style="width:8%">Taille</th>
               <th style="width:22%" class="text-center">Papier</th>
-              <th style="width:10%">Encadrement</th>
+              <th style="width:10%"></th>
             </tr>
           </thead>
           <tbody>
@@ -52,7 +52,7 @@
               </td>
               <td data-th="Subtotal" class="text-center"><%= f.input :papier,label:false, :collection => @article.last.papierarray,classe:"form-control" %></td>
               <td class="actions" data-th="">
-              <%= f.input :cadre,label:false, :collection => @article.last.cadrearray,classe:"form-control" %>
+
 
               </td>
             </tr>

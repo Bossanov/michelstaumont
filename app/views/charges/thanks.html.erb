@@ -1,3 +1,5 @@
+
+
 <head>
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 
@@ -35,27 +37,9 @@
     </section>
     <section class="inner-page">
       <div class="container">
-        <h1>Vous êtes sur le point de régler votre commande en toute sécurité avec Stripe </h1>
-        <%= form_tag charges_path do %>
-          <article>
-            <% if flash[:error].present? %>
-              <div id="error_explanation">
-                <p><%= flash[:error] %></p>
-             </div>
-            <% end %>
-            <% @panier = Panier.where(profile_id: current_user.profile.id , statut: "pending" )%>
-            <label class="amount">
-              <span>Total à payer: <%= @panier.last.totalprice %> €</span>
-            </label>
-          </article>
-          <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-          data-description="Michel STAUMONT Photographe"
-          data-amount="<%= @panier.last.totalprice * 100 %>"
-          data-email="<%= current_user.email %>"
-          data-locale="auto"></script>
-        <% end %>
-
+        <h2>Vous avez payé ! Vous pouvez consulter votre compte-client pour suivre votre commande ! Merci !</h2>
+        <%= link_to "Retour à l'accueil", root_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+        <%= link_to "Voir ma commande", root_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
       </div>
     </section>
   </main>
