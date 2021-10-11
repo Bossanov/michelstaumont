@@ -51,7 +51,7 @@
                           <h4>pas de commande</h4>
                         <%end%>
                         <% if @paniers.length == 1%>
-                          <% @commande = Commande.find_by panier_id: @paniers.id %>
+                          <% @commande = Commande.find_by panier_id: @paniers.last.id %>
                           <tr>
                             <th scope="row">1</th>
                             <td><%= @paniers.created_at.strftime("%d.%m.%Y") %></td>
