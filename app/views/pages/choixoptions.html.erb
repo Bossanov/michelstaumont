@@ -16,6 +16,7 @@
     </div>
   </div>
 </div>
+<% if current_user && current_user.profile %>
 <% @article = Article.where(id: params[:format])%>
 <div class="container">
           <% @choice = Choice.new%>
@@ -72,4 +73,14 @@
 
 
 </div>
-
+<%else%>
+<div class="container">
+<br>
+<br>
+<H3> Vous devez vous inscrire et compléter votre profil pour pouvoir mettre une photographie dans votre panier !</H3>
+<br>
+<br>
+<%= link_to "Retour à l'accueil", root_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+<%= link_to "S'inscrire", new_user_registration_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+</div>
+<%end%>
