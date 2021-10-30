@@ -41,6 +41,8 @@
   <button class="tablinks" onclick="openCity(event, 'London')">Articles</button>
   <button class="tablinks" onclick="openCity(event, 'Paris')">Messages</button>
   <button class="tablinks" onclick="openCity(event, 'Tokyo')">Actualités</button>
+  <button class="tablinks" onclick="openCity(event, 'Com')">Commandes</button>
+
 
 
 </div>
@@ -238,6 +240,68 @@
   </div>
 </div>
 </div>
+
+
+<div id="Com" class="tabcontent">
+<div class="row">
+      <div class="col-md-12">
+        <h1 style="color:red;">Mes commandes passées non finalisées</h1>
+        <div class="table-data__tool">
+          <div class="table-data__tool-left">
+            <div class="rs-select2--light rs-select2--md">
+              <div class="dropDownSelect2"></div>
+            </div>
+          </div>
+        </div>
+        <div class="table-responsive table-responsive-data2">
+          <table class="table table-data2">
+            <thead>
+              <tr>
+                <th>commande n°</th>
+                <th>date de commande</th>
+                <th>valeur de la commande</th>
+                <th>email du client</th>
+                <th>statut</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @commandes = Commande.where(statut: "pending")%>
+              <% if @commandes.length == 0 %>
+                <tr class="tr-shadow">
+                  <td>Pas de commande dans la base de données</td>
+                </tr>
+              <% else%>
+                <% @commandes.each do |com|%>
+                  <% @panier = Panier.where(id: com.panier_id)%>
+                  <% @profile = Profile.where(id: @panier.last.profile_id)%>
+                  <% @user = User.where(id: @profile.last.user_id)%>
+                  <tr class="tr-shadow">
+                    <td><%= com.id%></td>
+                    <td><%= com.created_at.strftime("%d.%m.%Y") %></td>
+                    <td><%= @panier.last.totalprice%> €</td>
+                    <td><%= @user.last.email%></td>
+                    <% if com.statut == "pending"%>
+                      <td>non traitée</td>
+                    <%end%>
+                    <td>
+                      <div class="table-data-feature">
+                        <button class="item" data-toggle="tooltip" data-placement="top" title="Voir">
+                          <a class="fas fa-eye" href="<%=commande_path(com)%>"></a>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr class="spacer"></tr>
+                <% end%>
+              <%end%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+
 
 
 <%else%>
