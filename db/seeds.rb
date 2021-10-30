@@ -1,4 +1,4 @@
-MMputs "CREATION DE L'USER"
+puts "CREATION DE L'USER"
 user = User.new
 user.email = "michel.staumont@wanadoo.fr"
 user.password = "Montaisut1948"
