@@ -18,7 +18,7 @@ Rails.application.routes.draw do
   get 'pages/actualites'
   get 'pages/admin'
   get 'pages/client'
-  get 'pages/test'
+
   get 'pages/gallery'
   get 'pages/choixoptions'
   get 'pages/panier'

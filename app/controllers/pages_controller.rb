@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
 
-  skip_before_action :authenticate_user!, only: [:home, :actualites, :choixoptions, :gallery]
+  skip_before_action :authenticate_user!, only: [:home, :actualites, :choixoptions, :gallery, :legal]
 
   def home
   end
@@ -16,8 +16,7 @@ class PagesController < ApplicationController
 
 
 
-  def test
-  end
+
 
   def choixoptions
   end

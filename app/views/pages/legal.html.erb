@@ -47,7 +47,7 @@
   </div>
 </header><!-- End Header -->
   <main id="main">
-    <% if  current_user && current_user.profile%>
+
       <section id="contact" class="contact">
         <div class="container">
           <div class="section-title">
@@ -168,9 +168,7 @@ En vertu des articles 39 et 40 de la loi en date du 6 janvier 1978, le client di
 
           </div>
       </section>
-    <%else%>
-      <h1>Pour accéder à cette page, vous devez vous inscire et remplir votre profil</h1>
-    <%end%>
+
   </main>
 </body>
 <%= render 'shared/footer'%>
