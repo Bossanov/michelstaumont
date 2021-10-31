@@ -1,0 +1,176 @@
+<body>
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <header id="header">
+  <div class="d-flex flex-column">
+    <div class="profile">
+      <img src="../assets/photoavatar.png" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><p>Michel STAUMONT</p></h1>
+      <div class="social-links mt-3 text-center">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/michel.staumont.9" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/michelstaumont/?hl=fr" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://join.skype.com/invite/E2miaRqnfHxW" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="https://www.linkedin.com/in/michel-staumont-b4a3aa57/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+
+    <nav id="navbar" class="nav-menu navbar">
+      <ul>
+        <li><a href="<%=root_path%>" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
+
+        <li><a href="<%= pages_actualites_path%>" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Actualités</span></a></li>
+        <li><a href="<%= pages_gallery_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Galerie - E-shop</span></a></li>
+        <% if current_user && current_user.profile%>
+        <% @panier = Panier.find_by profile_id: current_user.profile.id, statut: "pending"%>
+        <% if @panier.nil?%>
+        <% else%>
+        <li><a href="<%= pages_panier_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Voir mon panier (<%=@panier.contenu.count%>)</span></a></li>
+        <%end%>
+        <%end%>
+        <% if current_user && current_user.profile%>
+          <li><a href="<%=  pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon compte client</span></a></li>
+        <%end%>
+        <% if current_user && current_user.profile.nil?%>
+          <li><a href="<%=  new_profile_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Remplir mon profil</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "client"%>
+          <li><a href="<%= pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace client</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "admin"%>
+          <li><a href="<%= pages_admin_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace admin</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <%else%>
+          <li><a href="<%= new_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>s'inscrire/se connecter</span></a></li>
+        <%end%>
+
+      </ul>
+    </nav><!-- .nav-menu -->
+  </div>
+</header><!-- End Header -->
+  <main id="main">
+    <% if  current_user && current_user.profile%>
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Conditions générales de vente</h2>
+            <p>Les présentes conditions générales de vente s'appliquent à toutes les ventes conclues sur le site Internet www.michelstaumont.com  sous réserve des conditions particulières indiquées dans la présentation des produits. </p>
+          </div>
+          <h3>ARTICLE 1 : Mentions obligatoires </h3>
+          <br>
+          <p>Le site Internet www.michelstaumont.com est un service de :<br>
+• Michel STAUMONT<br>
+• 25 rue du cateau 59550 Fontaine au Bois<br>
+• michel.staumont@wanadoo.fr<br>
+• 06 61 52 64 41<br>
+ </p>
+ <br>
+ <h3>ARTICLE 2 : Caractéristiques essentielles des produits et services vendus</h3>
+ <br>
+ <p>Le site Internet www.michelstaumont.com vend :<br>
+• Photographies d’art<br>
+Le client déclare avoir pris connaissance et avoir accepté les conditions générales de vente antérieurement à la passation de sa commande. La validation de votre commande vaut donc pour acceptation des conditions générales de vente.</p>
+<br>
+<h3>ARTICLE 3 : Prix</h3>
+<br>
+<p>Les prix de nos produits sont indiqués en euros toutes taxes comprises (TTC).<br>
+En cas de commande livrée dans un pays autre que la France métropolitaine, le client est l'importateur des produits qu’il achète. Pour tous les produits expédiés hors des collectivités d’outre-mer ou de l’Union européenne, la facture est établie sur le prix hors taxes. Le client est seul responsable des déclarations et paiements de tout droit de douane ou autre taxe susceptibles d'être exigibles dans son pays.<br>
+• Les frais de livraison sont inclus dans les prix des produits proposés en ligne.
+</p>
+<br>
+<h3>ARTICLE 4 : Délai de disponibilité des produits</h3>
+<br>
+<p>Les produits disponibles apparaissent sur notre site accompagnés de la mention « disponible ». Afin de répondre au mieux aux attentes de notre clientèle, la disponibilité de nos produits est régulièrement mise à jour sur notre site internet.<br>
+Si vous avez commandé un produit indisponible postérieurement à la validation de votre commande, vous en serez immédiatement informé. Nous procéderons à l'annulation de votre achat. Si la somme avait déjà été débitée, vous serez immédiatement remboursé.
+</p>
+<br>
+<h3>ARTICLE 5 : Commande</h3>
+<br>
+<p>Vous avez la possibilité de commander nos produits directement sur notre site internet.<br>
+Pour passer une commande sur notre site, choisissez vos articles et ajoutez-les au panier. Validez le contenu de votre panier.<br>
+• Si vous possédez déjà un compte client sur notre site, veuillez vous identifier.<br>
+• Si vous ne possédez pas de compte client sur notre site, veuillez en créer un.<br>
+• Cochez la case « paiement » pour honorer votre commande en ligne.<br>
+Validez votre paiement.<br>
+Vous recevrez un e-mail de confirmation de votre commande sur l'adresse mail que vous avez indiquée lors de la création de votre compte client.<br>
+Vérifiez les détails et le montant total de votre commande. Rectifiez au préalable les éventuelles erreurs avant toute acceptation.<br>
+Le transfert de propriété du produit n'aura lieu qu'au paiement complet de votre commande.
+</p>
+<br>
+<h3>ARTICLE 6 : Livraison</h3>
+<br>
+<p>•  Nous effectuons nos livraisons uniquement en France métropolitaine. Sont donc exclus la Corse et les DOM-TOM. Nous livrons exclusivement à l'adresse indiquée par le client.<br>
+• Nous vous proposons un seul type de livraison à savoir colissimo.<br>
+Les délais de livraison sont donnés à titre indicatif. Ils peuvent évoluer en raison de différents facteurs.
+</p>
+<br>
+<h3>ARTICLE 7 : Modalités de paiement</h3>
+<br>
+<p>•  Un seul mode de paiement est accepté : le consommateur doit payer par carte bancaire.<br>
+• Nous acceptons les paiements par carte [bleue / visa / master card / eurocard]. Lors de votre paiement en ligne, indiquez le numéro de votre carte bancaire, sa date d'expiration et les 3 chiffres inscrits au dos de celle-ci. Le paiement en ligne est sécurisé.<br>
+Nous exigeons un paiement intégral de la commande.
+</p>
+<br>
+<h3>ARTICLE 8 : Droit de rétractation</h3>
+<br>
+<p>•  Conformément à l'article L121-20 du Code de la consommation, vous disposez d'un droit de rétractation à exercer dans un délai de sept jours ouvrables à compter de la réception de l'article. Vous n'avez ni à justifier de motifs ni à payer de pénalités, mis à part les frais de retour.<br>
+• Le droit de rétractation ne s'applique pas pour les produits réalisés selon vos indications spécifiques et pour les produits personnalisés. Sont également exclus du droit de rétractation les produits qui sont par nature périssables, qui ne peuvent être réexpédiés (comme les téléchargements) ou qui peuvent se détériorer.<br>
+Réexpédiez le produit dans le délai mentionné ci-dessus. Dans le même délai, informez-nous de l'exercice de votre droit de rétractation par mail à michel.staumont@wanadoo.fr .<br>
+La marchandise est à retourner à l'adresse suivante, les frais de retour étant à votre charge : Michel STAUMONT 25 rue du Cateau 59550 Fontaine au Bois.<br>
+Afin que notre produit retourné soit à nouveau commercialisable, vous vous engagez à nous le renvoyer dans son emballage d'origine et en parfait état. L'emballage peut être ouvert et l'article utilisé tant qu'il est possible de le commercialiser.
+</p>
+<br>
+<h3>ARTICLE 09 : Garantie et droit de retour du produit (vice caché ou défectuosité)</h3>
+<br>
+<p>Vous bénéficiez de la garantie légale de conformité et donc d'une application de l'article L211-4 du Code de la consommation qui dispose que :<br>
+• « Le vendeur est tenu de livrer un bien conforme au contrat et répond des défauts de conformité existant lors de la délivrance. »<br>
+• « Il répond également des défauts de conformité résultant de l'emballage, des instructions de montage ou de l'installation lorsque celle-ci a été mise à sa charge par le contrat ou a été réalisée sous sa responsabilité. »<br>
+La garantie est applicable à nos produits [neufs / d'occasion] ayant un caractère défectueux (absence de fonctionnalité, produit impropre à l'usage auquel vous pouvez vous attendre, absence des caractéristiques présentées en ligne, dysfonctionnement partiel ou total du produit, panne du produit) et ce, même en l'absence de garantie contractuelle.<br>
+Son existence est présumée au jour de la délivrance du bien et vous n'avez pas à démontrer l'existence du défaut de conformité.<br>
+Dans le cas d'un défaut de conformité, nous nous engageons à :<br>
+• remplacer le produit ;<br>
+• réparer le produit dans un délai de 30 jours et sans frais.<br>
+En cas de défaillance dans l'exécution de notre obligation ou en cas de défectuosité majeure, nous nous engageons à vous rembourser la totalité du prix versé ou une partie du prix si vous souhaitez conserver le produit.
+</p>
+<br>
+<h3>ARTICLE 10 : Conditions et délais de remboursement</h3>
+<br>
+<p>Le remboursement des produits est intégral. Il s'effectue par chèque dans les plus brefs délais et au plus tard dans les 30 jours à compter de la date d'exercice du droit de rétractation.</p>
+<br>
+<h3>ARTICLE 11 : Réclamations du consommateur</h3>
+<br>
+<p>Toute réclamation du consommateur est à adresser par voie électronique à michel.staumont@wanadoo.fr .</p>
+<br>
+<h3>ARTICLE 12 : Propriété intellectuelle</h3>
+<br>
+<p>Tous les commentaires, images, illustrations de notre site nous sont exclusivement réservés. Au titre de la propriété intellectuelle et du droit d'auteur, toute utilisation est prohibée sauf à usage privé.<br>
+Sans autorisation préalable, toute reproduction de notre site, qu'elle soit partielle ou totale, est strictement interdite.
+</p>
+<br>
+<h3>ARTICLE 13 : Responsabilité </h3>
+<br>
+<p>Conformément à l'article 1147 du Code civil, nous engageons notre responsabilité contractuelle de plein droit à votre égard en cas d'inexécution ou de mauvaise exécution du contrat conclu.<br>
+Toutefois, notre responsabilité contractuelle ne peut être engagée dans les situations mentionnées ci-dessous :<br>
+• cas de la force majeure ;<br>
+• fait étranger qui ne peut nous être imputable.
+</p>
+<br>
+<h3>ARTICLE 14 : Données à caractère personnel</h3>
+<br>
+<p>•  Certaines informations relatives au client seront transmises au vendeur (à savoir le nom, prénom, adresse, code postal et numéro de téléphone) et ce, afin de permettre le traitement et la livraison des produits commandés.<br>
+Le site assure au client une collecte et un traitement d'informations personnelles dans le respect de la vie privée conformément à la loi n°78-17 du 6 janvier 1978 relative à l'informatique, aux fichiers et aux libertés.<br>
+En vertu des articles 39 et 40 de la loi en date du 6 janvier 1978, le client dispose d'un droit d'accès, de rectification, de suppression et d'opposition de ses données personnelles. Le client exerce ce droit via :<br>
+• par mail à michel.staumont@wanadoo.fr
+
+</p>
+
+
+
+
+
+          </div>
+      </section>
+    <%else%>
+      <h1>Pour accéder à cette page, vous devez vous inscire et remplir votre profil</h1>
+    <%end%>
+  </main>
+</body>
+<%= render 'shared/footer'%>

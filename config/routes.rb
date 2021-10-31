@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
 
   root to: 'pages#home'
+  get 'pages/legal'
   get 'pages/actualites'
   get 'pages/admin'
   get 'pages/client'
