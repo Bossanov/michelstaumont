@@ -4,16 +4,16 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :last_name %>
-    <%= f.input :first_name %>
-    <%= f.input :rue %>
-    <%= f.input :postcode %>
-    <%= f.input :pays %>
-    <%= f.input :phone %>
-    <%= f.input :statut %>
+    <%= f.input :last_name , label: false, placeholder: 'Votre nom'%>
+    <%= f.input :first_name , label: false, placeholder: 'Votre prénom'%>
+    <%= f.input :rue , label: false, placeholder: 'Votre rue'%>
+    <%= f.input :postcode , label: false, placeholder: 'Votre code postal'%>
+    <%= f.input :pays , label: false, placeholder: 'Votre pays'%>
+    <%= f.input :phone , label: false, placeholder: 'Votre téléphone'%>
+
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit, "Modifier" %>
   </div>
 <% end %>

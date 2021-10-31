@@ -1,5 +1,64 @@
-<h1>Créer son profil</h1>
 
+
+
+
+<body>
+  <i class="bi bi-list mobile-nav-toggle d-xl-none"></i>
+  <header id="header">
+  <div class="d-flex flex-column">
+    <div class="profile">
+      <img src="https://res.cloudinary.com/dz83jh064/image/upload/v1635675095/photoavatar_nkicl6.png" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><p>Michel STAUMONT</p></h1>
+      <div class="social-links mt-3 text-center">
+        <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="https://www.facebook.com/michel.staumont.9" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="https://www.instagram.com/michelstaumont/?hl=fr" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="https://join.skype.com/invite/E2miaRqnfHxW" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="https://www.linkedin.com/in/michel-staumont-b4a3aa57/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+
+    <nav id="navbar" class="nav-menu navbar">
+      <ul>
+        <li><a href="<%=root_path%>" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
+
+        <li><a href="<%= pages_actualites_path%>" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Actualités</span></a></li>
+        <li><a href="<%= pages_gallery_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Galerie - E-shop</span></a></li>
+        <% if current_user && current_user.profile%>
+        <% @panier = Panier.find_by profile_id: current_user.profile.id, statut: "pending"%>
+        <% if @panier.nil?%>
+        <% else%>
+        <li><a href="<%= pages_panier_path%>" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Voir mon panier (<%=@panier.contenu.count%>)</span></a></li>
+        <%end%>
+        <%end%>
+        <% if current_user && current_user.profile%>
+          <li><a href="<%=  pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon compte client</span></a></li>
+        <%end%>
+        <% if current_user && current_user.profile.nil?%>
+          <li><a href="<%=  new_profile_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Remplir mon profil</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "client"%>
+          <li><a href="<%= pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace client</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <% elsif current_user && current_user.profile && current_user.profile.statut == "admin"%>
+          <li><a href="<%= pages_admin_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace admin</span></a></li>
+          <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
+        <%else%>
+          <li><a href="<%= new_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>s'inscrire/se connecter</span></a></li>
+        <%end%>
+
+      </ul>
+    </nav><!-- .nav-menu -->
+  </div>
+</header><!-- End Header -->
+
+  <main id="main">
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <div class="section-title">
+            <h2>Création de votre profil</h2>
+
+          </div>
 <%= simple_form_for @profile do |f| %>
   <%= f.error_notification %>
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
@@ -13,7 +72,16 @@
     <%= f.input :phone, label: false, placeholder:"Votre téléphone" %>
   </div>
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= f.button :submit ,"Créer le profil"%>
   </div>
 <% end %>
-<%= link_to 'Back', profiles_path %>
+
+
+
+
+<%= link_to 'Annuler', root_path %>
+
+</div>
+</section>
+</main>
+</body>

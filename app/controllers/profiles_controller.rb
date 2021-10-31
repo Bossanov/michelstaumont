@@ -27,7 +27,7 @@ class ProfilesController < ApplicationController
     @profile.statut = "client"
 
     if @profile.save
-      redirect_to @profile, notice: 'Votre profil a été créé, merci !'
+      redirect_to pages_client_path
     else
       render :new
     end
@@ -36,7 +36,7 @@ class ProfilesController < ApplicationController
   # PATCH/PUT /profiles/1
   def update
     if @profile.update(profile_params)
-      redirect_to @profile, notice: 'Profile was successfully updated.'
+      redirect_to pages_client_path
     else
       render :edit
     end
