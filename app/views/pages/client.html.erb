@@ -103,7 +103,7 @@
                             <td><%=@paniers.last.totalprice%>€</td>
                             <td>
                               <%if @commande && @commande.envoi == "yes"%>
-                                commande envoyée <br> numéro de suivi : <a><%=@commande.suivi%></a>
+                                commande envoyée <br> numéro de suivi : <a href="https://www.laposte.fr/outils/suivre-vos-envois" target="_blank"><%=@commande.suivi%></a>
                               <% else%>
                                 en cours
                               <%end%>
@@ -119,7 +119,7 @@
                               <td><%=panier.totalprice%>€</td>
                               <td>
                                 <%if @commande && @commande.envoi == "yes"%>
-                                  commande envoyée <br> numéro de suivi : <a><%=@commande.suivi%></a>
+                                  commande envoyée <br> numéro de suivi : <a href="https://www.laposte.fr/outils/suivre-vos-envois" target="_blank"><%=@commande.suivi%></a>
                                 <% else%>
                                   en cours
                                 <%end%>
