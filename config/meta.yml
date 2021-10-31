@@ -1,0 +1,5 @@
+meta_product_name: "Michel STAUMONT"
+meta_title: "Michel STAUMONT - Photographe"
+meta_description: "Venez visiter ma galerie et achetez en ligne mes photographies"
+meta_image: "cover.png" # should exist in `app/assets/images/`
+twitter_account: "@MichelStaumont"   # required for Twitter Cards
