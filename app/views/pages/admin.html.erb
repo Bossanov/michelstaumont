@@ -42,6 +42,8 @@
   <button class="tablinks" onclick="openCity(event, 'Paris')">Messages</button>
   <button class="tablinks" onclick="openCity(event, 'Tokyo')">Actualités</button>
   <button class="tablinks" onclick="openCity(event, 'Com')">Commandes</button>
+  <button class="tablinks" onclick="openCity(event, 'Theme')">Gestion des thèmes</button>
+
 
 
 
@@ -67,6 +69,8 @@
         <thead>
           <tr>
             <th>titre</th>
+            <th>Thème</th>
+
             <th>description</th>
             <th>prix sans option</th>
             <th>type</th>
@@ -87,6 +91,7 @@
       <% @articles.each do |art|%>
         <tr class="tr-shadow">
           <td><%= art.title%></td>
+          <td><%= art.themearticle%></td>
           <td><%= art.body%></td>
           <td><%= art.price%></td>
           <td><%= art.typearray%></td>
@@ -302,7 +307,66 @@
     </div>
 </div>
 
+<div id="Theme" class="tabcontent">
+<div class="row">
+  <div class="col-md-12">
+    <h1 style="color:red;">La gestion des thèmes</h1>
+    <div class="table-data__tool">
+      <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md">
+          <div class="dropDownSelect2"></div>
+        </div>
+      </div>
+      <div class="table-data__tool-right">
+        <%= link_to 'Ajouter un thème', new_theme_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+      </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+      <table class="table table-data2">
+        <thead>
+          <tr>
+            <th>Nom</th>
+            <th>Nbre d'articles sur ce thème</th>
 
+            <th></th>
+          </tr>
+        </thead>
+      <tbody>
+      <% @themes = Theme.all%>
+
+      <% if @themes.length == 0 %>
+        <tr class="tr-shadow">
+          <td>Pas de thème enregistré dans la base de données</td>
+        </tr>
+      <% else%>
+      <% @themes.each do |theme|%>
+        <% @art = Article.where(theme: theme.nom)%>
+        <tr class="tr-shadow">
+          <td><%= theme.nom%></td>
+          <td><%= @art.length%></td>
+
+          <td>
+            <div class="table-data-feature">
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Modifier">
+                <a class="fas fa-pen" href="<%=edit_theme_path(theme)%>"></a>
+              </button>
+
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
+                <a class="fas fa-trash-alt" href="<%=effacer_theme_path(themeid: theme.id)%> "></a>
+              </button>
+
+            </div>
+          </td>
+        </tr>
+        <tr class="spacer"></tr>
+        <% end%>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
 
 <%else%>
 <h1>Vous n'avez pas accès à cette page</h1>

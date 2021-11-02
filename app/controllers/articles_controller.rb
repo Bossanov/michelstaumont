@@ -26,6 +26,7 @@ class ArticlesController < ApplicationController
     @article.typearray = params[:search][:typearray]
     @article.papierarray = params[:search][:papierarray]
     @article.cadrearray = params[:search][:cadrearray]
+
     if @article.save
       redirect_to pages_admin_path, notice: 'L article a été correctement enregistré.'
     else
@@ -68,6 +69,6 @@ class ArticlesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def article_params
-      params.require(:article).permit(:title, :price,:body, :typearray, :papierarray, :cadrearray, :statut, photos: [])
+      params.require(:article).permit(:title, :price,:body, :typearray, :papierarray,:themearticle, :cadrearray, :statut, photos: [])
     end
 end

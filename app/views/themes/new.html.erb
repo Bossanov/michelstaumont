@@ -1,0 +1,24 @@
+<%= render 'shared/navbaradmin'%>
+<div class="container">
+<% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
+<h1>Ajouter un thème</h1>
+<%= simple_form_for(@theme) do |f| %>
+<%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+<form class="row g-3">
+  <div class="col-md-6">
+    <%= f.input :nom, label:"Nom du thème",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+
+
+  <div class="col-12">
+    <%= f.button  :submit, class:"btn btn-primary" %>
+    <%= link_to 'Annuler', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+  </div>
+</form>
+<% end %>
+<% else%>
+<h1>Vous n'avez pas accès à cette page</h1>
+<%end%>
+</div>

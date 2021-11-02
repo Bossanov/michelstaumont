@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :choices
   resources :charges
   resources :actualites
+  resources :themes
 
 
   root to: 'pages#home'
@@ -18,7 +19,6 @@ Rails.application.routes.draw do
   get 'pages/actualites'
   get 'pages/admin'
   get 'pages/client'
-
   get 'pages/gallery'
   get 'pages/choixoptions'
   get 'pages/panier'
@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'effacer_message', to: 'messages#effacer_message'
   get 'supprimer_article_panier', to: 'paniers#supprimer_article_panier'
   get 'commande_envoyee', to: 'commandes#commande_envoyee'
-
+  get 'effacer_theme', to: 'themes#effacer_theme'
 
 
 end

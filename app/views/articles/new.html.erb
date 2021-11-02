@@ -25,6 +25,21 @@
   <div class="col-md-6">
     <%= f.input :statut,label:"Positionnement dans le site", :collection => ["Mise en avant sur le site","Normal"],placeholder:"Sélectionnez ici" ,classe:"form-control" %>
   </div>
+
+
+  <div class="col-md-6">
+
+   <% @themearray = []%>
+   <% @themes = Theme.all%>
+   <% @themes.each do |t|%>
+   <% @themearray << t.nom%>
+   <%end%>
+
+
+    <%= f.input :themearticle,label:"Choix du theme", :collection => @themearray,placeholder:"Sélectionnez ici" ,classe:"form-control" %>
+  </div>
+
+
   <div class="col-md-6">
     <%= f.input :photos, as: :file, input_html: { multiple: true } %>
   </div>
