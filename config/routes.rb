@@ -29,6 +29,8 @@ Rails.application.routes.draw do
   get 'supprimer_article_panier', to: 'paniers#supprimer_article_panier'
   get 'commande_envoyee', to: 'commandes#commande_envoyee'
   get 'effacer_theme', to: 'themes#effacer_theme'
+  get 'effacer_utilisateur', to: 'profiles#effacer_utilisateur'
+
 
 
 end

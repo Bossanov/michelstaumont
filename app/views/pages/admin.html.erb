@@ -43,6 +43,8 @@
   <button class="tablinks" onclick="openCity(event, 'Tokyo')">Actualités</button>
   <button class="tablinks" onclick="openCity(event, 'Com')">Commandes</button>
   <button class="tablinks" onclick="openCity(event, 'Theme')">Gestion des thèmes</button>
+  <button class="tablinks" onclick="openCity(event, 'Use')">Gestion des utilisateurs</button>
+
 
 
 
@@ -340,16 +342,13 @@
         </tr>
       <% else%>
       <% @themes.each do |theme|%>
-        <% @art = Article.where(theme: theme.nom)%>
+        <% @art = Article.where(themearticle: theme.nom)%>
         <tr class="tr-shadow">
           <td><%= theme.nom%></td>
           <td><%= @art.length%></td>
 
           <td>
             <div class="table-data-feature">
-              <button class="item" data-toggle="tooltip" data-placement="top" title="Modifier">
-                <a class="fas fa-pen" href="<%=edit_theme_path(theme)%>"></a>
-              </button>
 
               <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
                 <a class="fas fa-trash-alt" href="<%=effacer_theme_path(themeid: theme.id)%> "></a>
@@ -367,6 +366,81 @@
   </div>
 </div>
 </div>
+
+<div id="Use" class="tabcontent">
+<div class="row">
+  <div class="col-md-12">
+    <h1 style="color:red;">La gestion des utilisateurs</h1>
+    <div class="table-data__tool">
+      <div class="table-data__tool-left">
+        <div class="rs-select2--light rs-select2--md">
+          <div class="dropDownSelect2"></div>
+        </div>
+      </div>
+      <div class="table-data__tool-right">
+
+      </div>
+    </div>
+    <div class="table-responsive table-responsive-data2">
+      <table class="table table-data2">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Adresse</th>
+
+
+
+
+            <th></th>
+          </tr>
+        </thead>
+      <tbody>
+      <% @users = User.all%>
+
+      <% if @users.length == 0 %>
+        <tr class="tr-shadow">
+          <td>Pas d'utilisateur enregistré dans la base de données</td>
+        </tr>
+      <% else%>
+      <% @users.each do |use|%>
+        <% @pro = Profile.where(user_id: use.id)%>
+        <tr class="tr-shadow">
+
+          <td><%= use.id%></td>
+          <td><%= @pro.last.last_name.upcase%></td>
+          <td><%= @pro.last.first_name.capitalize%></td>
+          <td><%= use.email%></td>
+          <td><%= @pro.last.rue%> <%= @pro.last.postcode%> <%= @pro.last.ville%></td>
+
+          <td>
+            <div class="table-data-feature">
+            <% if @pro.last.statut == "admin"%>
+
+              <p style="color:red;">ADMIN</p>
+            <%else%>
+
+              <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
+                <a class="fas fa-trash-alt" href="<%=effacer_utilisateur_path(userid: use.id)%> "></a>
+              </button>
+
+            <% end%>
+            </div>
+          </td>
+        </tr>
+        <tr class="spacer"></tr>
+        <% end%>
+        <%end%>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>
+
+
 
 <%else%>
 <h1>Vous n'avez pas accès à cette page</h1>
