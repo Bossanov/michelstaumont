@@ -48,7 +48,7 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-<%=art.themearticle.gsub(/[^a-zA-Z0-9\-]/,"").delete(' ')%>">
             <div class="portfolio-wrap">
               <span class="notify-badge"><%=art.price%>€</span>
-              <% if art.photos.first.key.nil?%>
+              <% if art.photos.nil? && art.photos.first.key.nil?%>
               <%else%>
               <%= cl_image_tag art.photos.first.key , size:"410x300", crop:"fill", class:"img-fluid"%>
               <%end%>
