@@ -75,6 +75,7 @@
           <tr>
             <th>titre</th>
             <th>Thème</th>
+            <th>Nbre photos</th>
 
             <th>description</th>
             <th>prix sans option</th>
@@ -99,6 +100,8 @@
         <tr class="tr-shadow">
           <td><%= art.title%></td>
           <td><%= art.themearticle%></td>
+          <td><%= art.photos.count%></td>
+
           <td><%= art.body%></td>
           <td><%= art.price%></td>
           <td><%= art.typearray%></td>
