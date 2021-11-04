@@ -49,11 +49,19 @@
             <div class="portfolio-wrap">
               <span class="notify-badge"><%=art.price%>€</span>
 
+              <% if art.photos.count == 0%>
+                <img src="https://res.cloudinary.com/dz83jh064/image/upload/v1631711846/P0D2394399G_j6qsx8.webp" size="410x300" crop="fill" class="img-fluid">
+              <%else%>
 
               <%= cl_image_tag art.photos.first.key , size:"410x300", crop:"fill", class:"img-fluid"%>
-
+              <%end%>
               <div class="portfolio-links">
+              <% if art.photos.count == 0%>
+                <a href="https://res.cloudinary.com/dz83jh064/image/upload/v1631711846/P0D2394399G_j6qsx8.webp" data-gallery="portfolioGallery" class="portfolio-lightbox" title="<%=art.title.capitalize%>"><i class="fas fa-eye"></i></a>
+
+              <%else%>
                 <a href="<%= art.photos.first.url%>" data-gallery="portfolioGallery" class="portfolio-lightbox" title="<%=art.title.capitalize%>"><i class="fas fa-eye"></i></a>
+                <%end%>
                 <a href="<%= pages_choixoptions_path(art)%>" title="Acheter"><i class="fas fa-shopping-basket"></i></a>
               </div>
             </div>
