@@ -53,6 +53,9 @@
 <% if current_user && current_user.profile && current_user.profile.statut == "admin"%>
 
 <div id="London" class="tabcontent">
+
+
+
 <div class="row">
   <div class="col-md-12">
     <h1 style="color:red;">Les articles</h1>
@@ -77,7 +80,7 @@
             <th>prix sans option</th>
             <th>type</th>
             <th>papier</th>
-            <th>cadre</th>
+
             <th>status</th>
             <th></th>
           </tr>
@@ -90,6 +93,8 @@
           <td>Pas d'article dans la base de données</td>
         </tr>
       <% else%>
+
+
       <% @articles.each do |art|%>
         <tr class="tr-shadow">
           <td><%= art.title%></td>
@@ -98,7 +103,7 @@
           <td><%= art.price%></td>
           <td><%= art.typearray%></td>
           <td><%= art.papierarray%></td>
-          <td><%= art.cadrearray%></td>
+
           <td><%= art.statut%></td>
           <td>
             <div class="table-data-feature">
@@ -117,12 +122,20 @@
         </tr>
         <tr class="spacer"></tr>
         <% end%>
+
+
+
+
         <%end%>
         </tbody>
       </table>
     </div>
   </div>
 </div>
+
+
+
+
 </div>
 
 
