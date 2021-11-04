@@ -349,11 +349,11 @@
 
           <td>
             <div class="table-data-feature">
-
+              <% if @art.length == 0%>
               <button class="item" data-toggle="tooltip" data-placement="top" title="Effacer">
                 <a class="fas fa-trash-alt" href="<%=effacer_theme_path(themeid: theme.id)%> "></a>
               </button>
-
+              <%end%>
             </div>
           </td>
         </tr>

@@ -31,7 +31,7 @@
         <% if current_user && current_user.profile.nil?%>
           <li><a href="<%=  new_profile_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Remplir mon profil</span></a></li>
         <% elsif current_user && current_user.profile && current_user.profile.statut == "client"%>
-          <li><a href="<%= pages_client_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace client</span></a></li>
+
           <li><a href="<%= destroy_user_session_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Se déconnecter</span></a></li>
         <% elsif current_user && current_user.profile && current_user.profile.statut == "admin"%>
           <li><a href="<%= pages_admin_path%>" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Mon espace admin</span></a></li>
