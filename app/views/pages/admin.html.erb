@@ -44,6 +44,8 @@
   <button class="tablinks" onclick="openCity(event, 'Com')">Commandes</button>
   <button class="tablinks" onclick="openCity(event, 'Theme')">Gestion des thèmes</button>
   <button class="tablinks" onclick="openCity(event, 'Use')">Gestion des utilisateurs</button>
+  <button class="tablinks" onclick="openCity(event, 'Page')">Mise en page Homepage</button>
+
 
 
 
@@ -456,6 +458,100 @@
 </div>
 </div>
 
+
+<div id="Page" class="tabcontent">
+  <%@content = Content.where(id: 1)%>
+  <%@content = @content.last%>
+  <% if @content.nil?%>
+    <h2>Contenu non encore initialisé<h2>
+    <%= link_to 'Initialiser', new_content_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+  <%else%>
+
+  <%= simple_form_for(@content) do |f| %>
+
+
+<form class="row g-3">
+  <div class="col-md-6">
+    <%= f.input :typea, label:"Titre principal",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typeb, label:"Sous-titre principal",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typec, label:"Titre de la barre de navigation",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typed, label:"Lien Twitter",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typee, label:"Lien Facebook",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typef, label:"Lien Instagram",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typeg, label:"Lien Skype",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typeh, label:"Lien Linkedin",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typei, label:'Texte "à propos de moi"',  type:"text", classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typej, label:"Date de naissance",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typek, label:"Lieu de naissance",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+  <div class="col-md-6">
+    <%= f.input :typeq, label:"URL de mon site",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typel, label:"Téléphone",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typem, label:"Adresse",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typen, label:"E-mail",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typeo, label:'Texte "mes derniers ajouts"',  type:"text",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :typep, label:'Texte "me contacter"',  type:"text",classe:"form-control", placeholder:"Écrivez ici"%>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+  </div>
+
+  <div class="col-12">
+    <%= f.button  :submit, class:"btn btn-primary" %>
+    <%= link_to 'Retour page Admin', pages_admin_path, class:"au-btn au-btn-icon au-btn--green au-btn--small"%>
+  </div>
+</form>
+<% end %>
+
+  <%end%>
+
+</div>
 
 
 <%else%>

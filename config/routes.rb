@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :charges
   resources :actualites
   resources :themes
-
+  resources :contents
 
   root to: 'pages#home'
   get 'pages/legal'
@@ -30,7 +30,5 @@ Rails.application.routes.draw do
   get 'commande_envoyee', to: 'commandes#commande_envoyee'
   get 'effacer_theme', to: 'themes#effacer_theme'
   get 'effacer_utilisateur', to: 'profiles#effacer_utilisateur'
-
-
 
 end

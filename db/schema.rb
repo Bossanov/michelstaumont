@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_154148) do
+ActiveRecord::Schema.define(version: 2021_11_05_152418) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,28 @@ ActiveRecord::Schema.define(version: 2021_11_02_154148) do
     t.string "finished"
     t.string "suivi"
     t.index ["panier_id"], name: "index_commandes_on_panier_id"
+  end
+
+  create_table "contents", force: :cascade do |t|
+    t.string "typea"
+    t.string "typeb"
+    t.string "typec"
+    t.string "typed"
+    t.string "typee"
+    t.string "typef"
+    t.string "typeg"
+    t.string "typeh"
+    t.text "typei"
+    t.string "typej"
+    t.string "typek"
+    t.string "typel"
+    t.string "typem"
+    t.string "typen"
+    t.text "typeo"
+    t.text "typep"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "typeq"
   end
 
   create_table "messages", force: :cascade do |t|
