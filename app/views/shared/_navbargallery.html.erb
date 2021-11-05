@@ -1,5 +1,6 @@
 <header id="header">
   <div class="d-flex flex-column">
+    <%if @content.length == 0%>
     <div class="profile">
       <img src="../assets/photoavatar.png" alt="" class="img-fluid rounded-circle">
       <h1 class="text-light"><a href="index.html">Michel STAUMONT</a></h1>
@@ -11,6 +12,19 @@
         <a href="https://www.linkedin.com/in/michel-staumont-b4a3aa57/" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
       </div>
     </div>
+    <%else%>
+    <div class="profile">
+      <img src="../assets/photoavatar.png" alt="" class="img-fluid rounded-circle">
+      <h1 class="text-light"><a href="index.html"><%=@content.last.typec%></a></h1>
+      <div class="social-links mt-3 text-center">
+        <a href="<%=@content.last.typed%>" class="twitter"><i class="bx bxl-twitter"></i></a>
+        <a href="<%=@content.last.typee%>" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        <a href="<%=@content.last.typef%>" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+        <a href="<%=@content.last.typeg%>" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a>
+        <a href="<%=@content.last.typeh%>" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+      </div>
+    </div>
+    <%end%>
 
     <nav id="navbar" class="nav-menu navbar">
       <ul>

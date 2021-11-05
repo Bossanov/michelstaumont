@@ -10,13 +10,13 @@
   <section id="hero" class="d-flex flex-column justify-content-center align-items-center">
     <div class="hero-container" data-aos="fade-in">
 
-      <%if @content.nil?%>
+      <%if @content.length == 0%>
       <h1>Michel STAUMONT</h1>
       <%else%>
       <h1><%= @content.last.typea%></h1>
       <%end%>
 
-      <%if @content.nil?%>
+      <%if @content.length == 0%>
       <p>Photographe <span class="typed" data-typed-items="Actualités, Galerie, E-shop"></span></p>
       <%else%>
       <p><%=@content.last.typeb%> <span class="typed" data-typed-items="Actualités, Galerie, E-shop"></span></p>
@@ -33,7 +33,7 @@
 
         <div class="section-title">
           <h2>À propos de moi</h2>
-          <%if @content.nil?%>
+          <%if @content.length == 0%>
           <p>Chirurgien-dentiste retraité depuis 11 ans, je pratique la photographie depuis plus de 35 années. Auteur Photographe autodidacte et voyageur, ma démarche se veut sincère et de partage. Expositions, rencontres, édition ... restent l'aboutissement de mes observations.<br>Les tirages Fine Art personnels apportent la touche finale à mon travail d'Auteur Photographe.<br>Je suis membre du collectif INCARNAT depuis quelques années. Prix LEICA 1990 - Grand Prix d'auteur de la Fédération Française de Photographie 2005, sont les étapes marquantes de ma reconnaissance en photographie.</p>
           <%else%>
           <p><%=@content.last.typei%>
@@ -55,7 +55,7 @@
             <div class="row">
               <div class="col-lg-6">
                 <ul>
-                  <% if @content.nil?%>
+                  <%if @content.length == 0%>
                   <li><i class="bi bi-chevron-right"></i> <strong>Naissance:</strong> <span>8 Janvier 1948 à Belfort</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Site Web:</strong> <span>www.michelstaumont.com</span></li>
                   <li><i class="bi bi-chevron-right"></i> <strong>Téléphone:</strong> <span>+33 661 526 441</span></li>
@@ -96,7 +96,7 @@
 
         <div class="section-title">
           <h2>Mes derniers ajouts photographiques</h2>
-          <% if @content.nil?%>
+          <%if @content.length == 0%>
           <p>Vous trouverez ici mes six derniers ajouts photographiques. Pour voir l'ensemble de mes oeuvres, rendez-vous dans mon espace Galerie-Eshop.</p>
           <%else%>
           <p><%=@content.last.typeo%></p>
@@ -149,11 +149,15 @@
 
         <div class="section-title">
           <h2>Me contacter</h2>
+          <%if @content.length == 0%>
           <p>Pour me joindre, c'est simple, servez-vous de mes coordonnées ou bien envoyez-moi un message via ce formulaire ci-dessous. J'y répondrai avec plaisir et dans les meilleurs délais.</p>
+          <%else%>
+          <p><%=@content.last.typep%></p>
+          <%end%>
         </div>
 
         <div class="row" data-aos="fade-in">
-          <%if @content.nil?%>
+          <%if @content.length == 0%>
           <div class="col-lg-5 d-flex align-items-stretch">
             <div class="info">
               <div class="address">
