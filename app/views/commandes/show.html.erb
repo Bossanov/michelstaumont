@@ -25,8 +25,13 @@
           <% @panier.last.contenu.each do |cont|%>
             <% @choix = Choice.where(id: cont)%>
             <% @article = Article.where(id: @choix.last.articleid)%>
+              <%if @article.length == 0%>
+
+              <%else%>
             <h4 class="nomargin"><%=@article.last.title.capitalize%></h4>
             <p style="color:white;">Options retenues : <%=@choix.last.typechoice%>, <%=@choix.last.papier%>, <%=@choix.last.cadre%></p>
+              <%end%>
+
           <%end%>
         </p>
       </div>
